@@ -2,24 +2,16 @@ import React, {ChangeEvent} from 'react';
 import '../App.css';
 import {Button} from './Button';
 import {SettingsWindow} from './SettingsWindow';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {AppStateType} from '../redux/store';
+import {ChangeMaxValueAC, ChangeMinValueAC, SetChangesAC} from '../redux/settings-reducer';
 
-type SettingPropsType = {
-    minValue: number
-    maxValue: number
-    ChangeMaxValue: (maxNumber: number) => void
-    ChangeMinValue: (minNumber: number) => void
-    callBack: () => void
-    setButton: boolean
-    error: boolean
-    value: number
-    limitValue: number
-    startValue: number
-    setting: boolean
+type SettingPropsType = ReturnType<typeof MapStateToProps> &
+    ReturnType<typeof MapDispatchToProps> & {
     className: string
     buttonValue: string
 }
-
-
 const Settings = (props: SettingPropsType) => {
     const onMinChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.ChangeMinValue(+e.currentTarget.value);
@@ -40,25 +32,44 @@ const Settings = (props: SettingPropsType) => {
                 <div className="buttons">
                     <Button
                         error={props.error}
-                        startValue={props.startValue}
+                        startValue={props.minValue}
                         setButton={props.setButton}
                         setting={props.setting}
                         callBack={props.callBack}
                         value={props.value}
                         className={props.className}
                         buttonValue={props.buttonValue}
-                        limitValue={props.limitValue}/>
+                        limitValue={props.maxValue}/>
                 </div>
             </div>
 
         </div>
     );
 };
+const MapStateToProps = (store: AppStateType) => {
+    return {
+        value: store.settings.value,
+        maxValue: store.settings.maxValue,
+        minValue: store.settings.minValue,
+        setButton: store.settings.setButton,
+        setting: store.settings.setting,
+        error: store.settings.error,
+    };
+};
+const MapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        ChangeMaxValue: (maxNumber: number) => {
+            dispatch(ChangeMaxValueAC(maxNumber));
+        },
+        ChangeMinValue: (minNumber: number) => {
+            dispatch(ChangeMinValueAC(minNumber));
+        },
+        callBack: () => {
+            dispatch(SetChangesAC());
+        },
+    };
+};
 
-export default Settings;
 
+export const SettingsContainer = connect(MapStateToProps, MapDispatchToProps)(Settings);
 
-/*
-disabled={!props.setButton}
-className={!props.setButton?'disableSetButton':'setButton'}
-onClick={props.SetChanges}>Set</button>*/

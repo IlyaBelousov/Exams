@@ -12,8 +12,9 @@ export const CounterWindow = (props: CounterWindowPropsType) => {
         if(props.error){
             return <span className='error'>Incorrect value!</span>
         }
-        else return <span className="text">enter values and press 'set'</span>
-    };
+
+        return <span className="text">enter values and press 'set'</span>
+    }
     return (
         <div
             className={props.value === props.limitValue && props.limitValue !== 0 ? 'limit' : 'counter'}>
