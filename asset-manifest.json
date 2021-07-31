@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Exams/static/css/main.45bf52e7.chunk.css",
+    "main.js": "/Exams/static/js/main.c4d4c862.chunk.js",
+    "main.js.map": "/Exams/static/js/main.c4d4c862.chunk.js.map",
+    "runtime-main.js": "/Exams/static/js/runtime-main.6730fd4a.js",
+    "runtime-main.js.map": "/Exams/static/js/runtime-main.6730fd4a.js.map",
+    "static/js/2.a0b7f96d.chunk.js": "/Exams/static/js/2.a0b7f96d.chunk.js",
+    "static/js/2.a0b7f96d.chunk.js.map": "/Exams/static/js/2.a0b7f96d.chunk.js.map",
+    "static/js/3.f5487cf9.chunk.js": "/Exams/static/js/3.f5487cf9.chunk.js",
+    "static/js/3.f5487cf9.chunk.js.map": "/Exams/static/js/3.f5487cf9.chunk.js.map",
+    "index.html": "/Exams/index.html",
+    "static/css/main.45bf52e7.chunk.css.map": "/Exams/static/css/main.45bf52e7.chunk.css.map",
+    "static/js/2.a0b7f96d.chunk.js.LICENSE.txt": "/Exams/static/js/2.a0b7f96d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6730fd4a.js",
+    "static/js/2.a0b7f96d.chunk.js",
+    "static/css/main.45bf52e7.chunk.css",
+    "static/js/main.c4d4c862.chunk.js"
+  ]
+}
