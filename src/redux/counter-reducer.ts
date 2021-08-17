@@ -2,7 +2,7 @@ import {CHANGE_MAX_VALUE, CHANGE_MIN_VALUE, SET_CHANGES, SettingActionType} from
 
 const INC_COUNTER_VALUE = 'INC_COUNTER_VALUE';
 const RESET_COUNTER_VALUE = 'RESET_COUNTER_VALUE';
-type InitialStateType = typeof InitialState
+export type InitialStateType = typeof InitialState
 type ActionsType = ReturnType<typeof IncCounterValueAC>
     & ReturnType<typeof ResetCounterValueAC>
     & SettingActionType

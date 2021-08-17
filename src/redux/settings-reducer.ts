@@ -1,5 +1,3 @@
-import {useEffect} from 'react';
-import {store} from './store';
 import {Dispatch} from 'redux';
 
 export const CHANGE_MAX_VALUE = 'CHANGE_MAX_VALUE';

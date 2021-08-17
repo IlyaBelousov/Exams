@@ -2,42 +2,48 @@ import React from 'react';
 import {CounterWindow} from './CounterWindow';
 import {Button} from './Button';
 import {AppStateType} from '../redux/store';
-import {Dispatch} from 'redux';
 import {IncCounterValueAC, ResetCounterValueAC} from '../redux/counter-reducer';
-import {connect} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
+import {InitialStateType} from '../redux/counter-reducer';
 
-type CounterPropsType = ReturnType<typeof MapStateToProps>&ReturnType<typeof MapDispatchToProps>
-
-const Counter = (props: CounterPropsType) => {
+export const Counter = () => {
+    const state = useSelector<AppStateType, InitialStateType>(state => state.counter);
+    const dispatch = useDispatch();
+    const IncCounterValue = () => {
+        dispatch(IncCounterValueAC())
+    };
+    const ResetCounterValue = () => {
+        dispatch(ResetCounterValueAC());
+    };
     return (
         <div className="wrapper">
             <div className="inner">
                 <CounterWindow
-                    error={props.error}
-                    setting={props.setting}
-                    limitValue={props.limitValue}
-                    value={props.value}/>
+                    error={state.error}
+                    setting={state.setting}
+                    limitValue={state.limitValue}
+                    value={state.value}/>
                 <div className="buttons">
                     <Button
-                        error={props.error}
-                        setting={props.setting}
-                        setButton={props.setButton}
-                        startValue={props.startValue}
-                        limitValue={props.limitValue}
+                        error={state.error}
+                        setting={state.setting}
+                        setButton={state.setButton}
+                        startValue={state.startValue}
+                        limitValue={state.limitValue}
                         buttonValue={'INC'}
-                        value={props.value}
-                        callBack={props.CounterValue}
+                        value={state.value}
+                        callBack={IncCounterValue}
                         className={'increment'}
                     />
                     <Button
-                        error={props.error}
-                        setting={props.setting}
-                        setButton={props.setButton}
-                        startValue={props.startValue}
-                        limitValue={props.limitValue}
+                        error={state.error}
+                        setting={state.setting}
+                        setButton={state.setButton}
+                        startValue={state.startValue}
+                        limitValue={state.limitValue}
                         buttonValue={'RESET'}
-                        value={props.value}
-                        callBack={props.ResetValue}
+                        value={state.value}
+                        callBack={ResetCounterValue}
                         className={'reset'}
                     />
                 </div>
@@ -47,28 +53,3 @@ const Counter = (props: CounterPropsType) => {
 };
 
 export default Counter;
-
-
-const MapStateToProps = (state: AppStateType) => {
-    return {
-        error: state.counter.error,
-        setting: state.counter.setting,
-        setButton: state.counter.setButton,
-        limitValue: state.counter.limitValue,
-        value: state.counter.value,
-        startValue: state.counter.startValue,
-    };
-};
-const MapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        CounterValue: () => {
-            dispatch(IncCounterValueAC());
-        },
-        ResetValue: () => {
-            dispatch(ResetCounterValueAC());
-        }
-    };
-
-};
-
-export const CounterContainer=connect(MapStateToProps,MapDispatchToProps)(Counter)

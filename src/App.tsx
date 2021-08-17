@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import {CounterContainer} from './components/Counter';
-import { SettingsContainer } from './components/Settings';
+import {Settings} from './components/Settings';
+import Counter from './components/Counter';
+
 
 
 function App() {
-
     return (
         <div className="container">
-            <SettingsContainer className={'setting'} buttonValue={'SET'}/>
-            <CounterContainer/>
+            <Settings className={'setting'} buttonValue={'SET'}/>
+            <Counter/>
         </div>
     );
 }
